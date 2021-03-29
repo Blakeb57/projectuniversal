@@ -52,15 +52,19 @@ int main()
 		}
 		else // blue is dominant
 		{
-		   it = swatches.begin();
-		   for(int i = 0;i < swatches.size()/2;i++)
+			it = swatches.begin();
+			for(int i = 0;i < swatches.size()/2;i++)
+			{
 			++it; // loop moves iterator to the middle
-		   if(swatches.size()%2 == 1){
-			swatches.insert_before(it, tmp);
-		   }
-		   else{
-			swatches.insert_after(it, tmp);
-		   }
+			}
+
+			if(swatches.size()%2 == 1)
+			{
+				swatches.insert_before(it, tmp);
+			}
+			else{
+				swatches.insert_after(it, tmp);
+			}
 		}
 	}
 	fin.close(); 
