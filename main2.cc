@@ -41,11 +41,11 @@ int main()
 		int green = tmp.get_green(); 
 		int blue = tmp.get_blue(); 
 		
-		if ( (green >= red) && (green >= blue) ) // green is dominant
+		if ((green >= red) && (green >= blue)) // green is dominant
 		{
 			swatches.rear_insert(tmp); 
 		}
-		else if ( (red >= green) && (red>=blue) ) 
+		else if ((red >= green) && (red>=blue)) 
 				// red is dominant
 		{
 			swatches.front_insert(tmp); 
@@ -56,10 +56,10 @@ int main()
 		   for(int i = 0;i < swatches.size()/2;i++)
 			++it; // loop moves iterator to the middle
 		   if(swatches.size()%2 == 1){
-			swatches.insert_before(it,tmp);
+			swatches.insert_before(it, tmp);
 		   }
 		   else{
-			swatches.insert_after(it,tmp);
+			swatches.insert_after(it, tmp);
 		   }
 		}
 	}
@@ -107,9 +107,11 @@ int main()
 	int counter=0; 
 	while (swatches.size() > 0)
 	{
-		cout<<*swatches.begin()<<endl;
+		cout << *swatches.begin()<<endl;
 		swatches.front_remove();
-		if(swatches.size() > 0){
+
+		if(swatches.size() > 0)
+		{
 		    cout<<*swatches.r_begin()<<endl;
 		    swatches.rear_remove();
 		}
