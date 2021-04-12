@@ -25,7 +25,7 @@ class dlist
         int size();
 
         //Iterator functions
-        iterator begin(){return iterator(head;)}
+        iterator begin(){return iterator(head);}
         iterator end(){return iterator(NULL);}
         iterator r_begin(){return iterator(tail);}
         iterator r_end(){return iterator(NULL);}
@@ -36,8 +36,8 @@ class dlist
         void remove(iterator it);
 
     private:
-        node<T> head;
-        node<T> tail;
+        dnode<T> *head;
+        dnode<T> *tail;
 };
 #include "dlist.template"
 #endif

@@ -13,43 +13,43 @@ dlist<T>::dlist()
 template<class T>
 dlist<T>::~dlist()
 {
-    node<T> *rmptr;
+    dnode<T> *rmptr;
     while(head != NULL)
     {
         rmptr = head;
-        head = head->next();
+        head = head->nxt();
         delete rmptr;
     }
 }
 
 //Copy Constructor
 template<class T>
-dlist::dlist(const dlist<T> &other)
+dlist<T>::dlist(const dlist<T> &other)
 {
-    node<T>  *cursor = other.head;
+    dnode<T>  *cursor = other.head;
     head = NULL;
     tail = NULL;
     while(cursor != NULL)
     {
-        back_insert(cursor->data());
-        cursor = cursor->next();
+        rear_insert(cursor->data());
+        cursor = cursor->nxt();
     }
 }
 
 //Overload
 template<class T>
-void dlist::operator = (const dlist <T> &other)
+void dlist<T>::operator = (const dlist <T> &other)
 {
     if(this == &other)
     {
         return;
     }
 
-    node<T> *tmp;
+    dnode<T> *tmp;
     while(head != NULL)
     {
         tmp = head;
-        head = head->next();
+        head = head->nxt();
         delete tmp;
     }
 
@@ -58,14 +58,14 @@ void dlist::operator = (const dlist <T> &other)
         head = tail = NULL;
     }
     else{
-        node<T> *cursor = other.head;
+        dnode<T> *cursor = other.head;
         head = NULL;
         tail =  NULL;
 
         while(cursor != NULL)
         {
-            back_insert(cursor->data());
-            cursor = cursor->next();
+            rear_insert(cursor->data());
+            cursor = cursor->nxt();
         }
     }
 }
@@ -75,18 +75,18 @@ void dlist<T>::front_insert(const T &item)
 {
     if(head == NULL)
     {
-        head = new node<T>;
+        head = new dnode<T>;
         head->set_data(item);
-        head->set_next(NULL);
-        head->set_previous(NULL);
+        head->set_nxt(NULL);
+        head->set_prev(NULL);
         tail = head;
     }
     else{
-        tail->set_next(new node<T>);
-        tail->next()->set_previous(tail);
-        tail = tail->next();
-        tail->set_data(item);
-        tail->set_next(NULL);
+        head->set_prev(new dnode<T>);
+        head->prev()->set_nxt(head);
+        head = head->prev();
+        head->set_data(item);
+        head->set_prev(NULL);
     }
 }
 
@@ -95,33 +95,33 @@ void dlist<T>::rear_insert(const T& item)
 {
     if(tail == NULL)
     {
-        tail = head = new node<T>;
+        tail = head = new dnode<T>;
         tail->set_data(item);
-        tail->set_next(NULL);
-        tail->set_previous(NULL);
+        tail->set_nxt(NULL);
+        tail->set_prev(NULL);
         head = tail;
     }
     else{
-        tail->set_next(new node<t>);
-        tail->next()->set_previous(tail);
-        tail = tail->next();
+        tail->set_nxt(new dnode<T>);
+        tail->nxt()->set_prev(tail);
+        tail = tail->nxt();
         tail->set_data(item);
-        tail->set_next(NULL);
+        tail->set_nxt(NULL);
     }
 }
 
 template<class T>
 void dlist<T>::front_remove()
 {
-    if(head->next() == NULL && head->previous() == NULL)
+    if(head->nxt() == NULL && head->prev() == NULL)
     {
         head = NULL;
         tail = NULL;
     }
     else{
-        node<T> *rmptr = head;
-        head = head->next();
-        head->set_previous(NULL);
+        dnode<T> *rmptr = head;
+        head = head->nxt();
+        head->set_prev(NULL);
         delete rmptr;
     }
 }
@@ -129,100 +129,100 @@ void dlist<T>::front_remove()
 template<class T>
 void dlist<T>::rear_remove()
 {
-    if(tail->previous() == NULL && tail->next() == NULL)
+    if(tail->prev() == NULL && tail->nxt() == NULL)
     {
         tail = NULL;
         head = NULL;
     }
     else{
-        node<T> *rmptr = tail;
-        tail = tail->previous();
-        tail->set_next(NULL);
+        dnode<T> *rmptr = tail;
+        tail = tail->prev();
+        tail->set_nxt(NULL);
         delete rmptr;
     }
 }
 
 template<class T>
-void dlist::show()
+void dlist<T>::show()
 {
-    for(node<T> *cursor = head; cursor != NULL; cursor->next())
+    for(dnode<T> *cursor = head; cursor != NULL; cursor->nxt())
     {
         cout << cursor->data() << " ";
     }
 }
 
 template<class T>
-void dlist::reverse_show()
+void dlist<T>::reverse_show()
 {
-    for(node<T> *cursor = tail; cursor != NULL; cursor = cursor->previous())
+    for(dnode<T> *cursor = tail; cursor != NULL; cursor = cursor->prev())
     {
-        cour << cursor->data() << " ";
+        cout << cursor->data() << " ";
     }
 }
 
 template<class T>
 void dlist<T>::insert_after(iterator it, T item)
 {
-    node<T> *tmp = it.ptr;
-    node<T> *front;
+    dnode<T> *tmp = it.ptr;
+    dnode<T> *front;
 
-    if(tail == NULL || tmp->next() == NULL)
+    if(tail == NULL || tmp->nxt() == NULL)
     {
-        back_insert(item);
+        rear_insert(item);
     }
     else{
-        front = tmp->next();
-        tmp->set_next(new node<T>);
-        tmp->next()->set_previous(tmp);
-        tmp = tmp->next();
-        front->set_previous(tmp);
+        front = tmp->nxt();
+        tmp->set_nxt(new dnode<T>);
+        tmp->nxt()->set_prev(tmp);
+        tmp = tmp->nxt();
+        front->set_prev(tmp);
         tmp->set_data(item);
-        tmp->set_next(front);
+        tmp->set_nxt(front);
     }
 }
 
 template<class T>
 void dlist<T>::insert_before(iterator it, T item)
 {
-    node<T> *tmp = it.ptr;
-    node<T> *before;
+    dnode<T> *tmp = it.ptr;
+    dnode<T> *before;
 
     if(head == NULL || tmp == NULL)
     {
         front_insert(item);
     }
     else{
-        before = tmp->previous();
-        tmp->set_previous(new node<T>);
-        tmp->previous()->set_next(tmp);
-        tmp = tmp->previous();
-        before->set_next(tmp);
+        before = tmp->prev();
+        tmp->set_prev(new dnode<T>);
+        tmp->prev()->set_nxt(tmp);
+        tmp = tmp->prev();
+        before->set_nxt(tmp);
         tmp->set_data(item);
-        tmp->set_previous(before);
+        tmp->set_prev(before);
     }
 }
 
 template<class T>
 void dlist<T>::remove(iterator it)
 {
-    node<T> *tmp = it.ptr;
-    node<T> *bye;
+    dnode<T> *tmp = it.ptr;
+    dnode<T> *bye;
 
     if(bye == head)
     {
         bye = head;
-        head = head->next();
+        head = head->nxt();
         delete bye;
     }
     else if(bye == tail){
         bye = tail;
-        tail = tail->previous();
+        tail = tail->prev();
         delete bye;
     }
     else{
         bye = tmp;
-        tmp = tmp->next();
-        tmp->set_previous(bye->previous());
+        tmp = tmp->nxt();
+        tmp->set_prev(bye->prev());
         delete bye;
     }
 }
@@ -232,7 +232,7 @@ int dlist<T>::size()
 {
     int count = 0;
 
-    for(node<T> *i = head; i != NULL; i = i->next())
+    for(dnode<T> *i = head; i != NULL; i = i->nxt())
     {
         count++;
     }

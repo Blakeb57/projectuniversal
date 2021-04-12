@@ -47,11 +47,12 @@ int main(int argc, char *argv[])
 
 	fout << "<html><head><title> Colors Project by " << filename;
 	fout << "</title></head><body><table><tr>";
-/*  if(isalpha(fin.peek()))
+
+ 	if(isalpha(fin.peek()))
 	{
 		getline(fin,separator);
 		fout << "<td align = center>"<<separator<<"</td></tr>";
-	} */
+	} 
 
 	fin >> tmp;
 	while(!fin.eof())
@@ -60,7 +61,7 @@ int main(int argc, char *argv[])
 			 << tmp.get_width() << " height = " << tmp.get_length() << "></td></tr></table></td>";
 		rowcount++;
 
-             if(rowcount%20 == 0)
+            if(rowcount%20 == 0)
 		fout<<"</tr><tr>";
 
 		if(fin.peek() == '\n') 
@@ -74,13 +75,15 @@ int main(int argc, char *argv[])
 				fout << "</tr><tr><td width = 16 height = 16>OOOO</td></tr><tr><td>OOOO</td></tr><tr>";
 		  	}
 		}
-/*	     if(isalpha(fin.peek())){
-                getline(fin,separator);
-                fout<<"<td align = center>"<<separator<<"</td></tr>";
-        	} */
 
-	     fin >> tmp;
-         }
+		if(isalpha(fin.peek()))
+		{
+			getline(fin,separator);
+			fout<<"<td align = center>"<<separator<<"</td></tr>";
+        }
+
+	    fin >> tmp;
+    }
 
 	fin.close();
 	fout << "</tr></table></body></html>\n";

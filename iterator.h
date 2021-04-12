@@ -4,45 +4,47 @@
 #define ITERATOR_H
 
 template<class T>
+class dlist;
+template<class T>
 class node_iterator
 {
     public:
         node_iterator(){ptr = NULL;}
-        node_iterator(node<T> *init){ptr = init;}
+        node_iterator(dnode<T> *init){ptr = init;}
         bool operator == (const node_iterator &other){return ptr == other.ptr;}
         bool operator != (const node_iterator &other){return ptr != other.ptr;}
-        T operator *(){return ptr->data();}
+        T operator *(){return (ptr->data());}
 
         node_iterator operator ++()
         {
-            ptr = ptr->next();
+            ptr = ptr->nxt();
             return *this;
         }
 
         node_iterator operator --()
         {
-            ptr = ptr->previous();
+            ptr = ptr->prev();
             return *this;
         }
 
         node_iterator operator ++(int)
         {
             node_iterator original(*this);
-            ptr = ptr->next();
+            ptr = ptr->nxt();
             return original;
         }
 
         node_iterator operator --(int)
         {
             node_iterator original2(*this);
-            ptr = ptr->previous();
+            ptr = ptr->prev();
             return original2;
         }
 
         friend class dlist<T>;
 
     private:
-        node<T> *ptr;
+        dnode<T> *ptr;
 
 };
 #endif
