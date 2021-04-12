@@ -5,13 +5,14 @@
 *********************************************************************************/
 
 #include <iostream>
-#include<fstream>
-#include<string>
+#include <fstream>
+#include <string>
 #include "swatches.h"
 
 using namespace std;
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
 
 	ifstream fin;
 	ofstream fout;

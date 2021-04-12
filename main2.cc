@@ -29,11 +29,13 @@ int main()
 	dlist<Swatch>::iterator it; 
 	ifstream fin; 
 	fin.open("swatches.txt"); 
+
 	if (fin.fail())
 	{
 		cout << "Could not open input file." << endl; 
 		return 1; 
 	}
+
 	Swatch tmp; 
 	while (fin >> tmp)
 	{
@@ -77,7 +79,8 @@ int main()
 	it = copy.begin();
 	for(int i =0; i < copy.size()/2; ++i)
 		++it;
-	//if(copy.size()%2 ==1) ++it; // if list has a true middle
+		
+	if(copy.size()%2 ==1) ++it; // if list has a true middle
 					// step up into it
 	copy.remove(it);
 	

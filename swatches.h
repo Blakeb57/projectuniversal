@@ -43,8 +43,9 @@ class Swatch
 		void set_length(int n_length);
 
 		// FRIENDS
-		friend std::ostream& operator <<(std::ostream& outs, const Swatch& sw);
-		friend std::istream& operator >>(std::istream& ins, Swatch& sw);
+		friend std::ostream& operator << (std::ostream& outs, const Swatch& sw);
+		friend std::istream& operator >> (std::istream& ins, Swatch& sw);
+
     private:
 		unsigned long color;
 		unsigned long red, green, blue;
