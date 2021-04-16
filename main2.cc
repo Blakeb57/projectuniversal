@@ -57,7 +57,7 @@ int main()
 			it = swatches.begin();
 			for(int i = 0;i < swatches.size()/2;i++)
 			{
-			++it; // loop moves iterator to the middle
+				++it; // loop moves iterator to the middle
 			}
 
 			if(swatches.size()%2 == 1)
@@ -79,7 +79,7 @@ int main()
 	it = copy.begin();
 	for(int i =0; i < copy.size()/2; ++i)
 		++it;
-		
+
 	if(copy.size()%2 ==1) ++it; // if list has a true middle
 					// step up into it
 	copy.remove(it);

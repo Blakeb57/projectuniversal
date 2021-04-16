@@ -24,7 +24,7 @@ dlist<T>::~dlist()
 
 //Copy Constructor
 template<class T>
-dlist<T>::dlist(const dlist<T> &other)
+dlist<T>::dlist(const dlist<T>& other)
 {
     dnode<T>  *cursor = other.head;
     head = NULL;
@@ -38,7 +38,7 @@ dlist<T>::dlist(const dlist<T> &other)
 
 //Overload
 template<class T>
-void dlist<T>::operator = (const dlist <T> &other)
+void dlist<T>::operator = (const dlist <T>& other)
 {
     if(this == &other)
     {
@@ -71,7 +71,7 @@ void dlist<T>::operator = (const dlist <T> &other)
 }
 
 template<class T>
-void dlist<T>::front_insert(const T &item)
+void dlist<T>::front_insert(const T& item)
 {
     if(head == NULL)
     {
@@ -145,9 +145,10 @@ void dlist<T>::rear_remove()
 template<class T>
 void dlist<T>::show()
 {
-    for(dnode<T> *cursor = head; cursor != NULL; cursor->nxt())
+    for(dnode<T> *cursor = head; cursor != NULL; cursor = cursor->nxt())
     {
         cout << cursor->data() << " ";
+        
     }
 }
 
@@ -187,7 +188,7 @@ void dlist<T>::insert_before(iterator it, T item)
     dnode<T> *tmp = it.ptr;
     dnode<T> *before;
 
-    if(head == NULL || tmp == NULL)
+    if(head == NULL || tmp == NULL || tmp == head)
     {
         front_insert(item);
     }

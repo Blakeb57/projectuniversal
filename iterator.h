@@ -11,8 +11,8 @@ class node_iterator
     public:
         node_iterator(){ptr = NULL;}
         node_iterator(dnode<T> *init){ptr = init;}
-        bool operator == (const node_iterator &other){return ptr == other.ptr;}
-        bool operator != (const node_iterator &other){return ptr != other.ptr;}
+        bool operator == (const node_iterator &other){return (ptr == other.ptr);}
+        bool operator != (const node_iterator &other){return (ptr != other.ptr);}
         T operator *(){return (ptr->data());}
 
         node_iterator operator ++()

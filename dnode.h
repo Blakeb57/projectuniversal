@@ -6,7 +6,7 @@ template<class T>
 class dnode
 {
     public:
-        dnode(T d = T(), dnode *i = NULL, dnode *j = NULL){next = i; previous = j;}
+        node(T d = T(), dnode *i = NULL, dnode *j = NULL){next = i; previous = j;}
         void set_nxt(dnode *l){next = l;}
         void set_prev(dnode *k){previous = k;}
         dnode *nxt()const{return next;}

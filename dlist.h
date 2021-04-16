@@ -9,6 +9,7 @@ class dlist
 {
     public:
         typedef node_iterator<T> iterator;
+        
         //Th Big 3
         dlist();
         ~dlist();
